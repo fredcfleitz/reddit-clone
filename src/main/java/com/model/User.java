@@ -12,16 +12,16 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Entity
 @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
-public class Post {
+public class User {
 
   @Id
   @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
   private Long id;
   @NonNull
-  private String title;
-  private String content;
-  private String subreddit;
-  private String user;
+  @Column(unique = true)
+  private String username;
+  @NonNull
+  private String password;
 
 
 }
