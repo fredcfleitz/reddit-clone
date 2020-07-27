@@ -4,8 +4,14 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+//import com.model.User;
 
 import javax.persistence.*;
+
+import org.springframework.data.annotation.CreatedBy;
+
+
+//import org.springframework.security.core.context.SecurityContextHolder;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +27,9 @@ public class Post {
   private String title;
   private String content;
   private String subreddit;
+  //@CreatedBy
   private String user;
+  //final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 
 
 }

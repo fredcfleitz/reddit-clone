@@ -19,9 +19,11 @@ public class User {
   private Long id;
   @NonNull
   @Column(unique = true)
-  private String username;
+  private String userName;
   @NonNull
   private String password;
+  private boolean isActive;
+  private String roles;
 
 
 }
