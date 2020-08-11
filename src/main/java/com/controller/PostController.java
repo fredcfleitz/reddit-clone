@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
@@ -32,6 +33,11 @@ class PostController {
         Optional<Post> post = postRepository.findById(id);
         return post.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+  }
+
+  @GetMapping("/r/{subreddit}/posts")
+  Collection<Post> getSubredditPosts(@PathVariable String subreddit) {
+    return postRepository.findBySubreddit(subreddit);
   }
 
   @PostMapping("/posts")
