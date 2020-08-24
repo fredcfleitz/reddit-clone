@@ -21,6 +21,7 @@ public class Comment {
   private String parent;
   private String content;
   private String user;
+  private int score;
 
 
 }

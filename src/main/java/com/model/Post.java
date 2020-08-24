@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.web.multipart.MultipartFile;
 
 
 //import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +28,13 @@ public class Post {
   private Long id;
   @NonNull
   private String title;
+  @Column(length=4000)
   private String content;
+  @Lob
+  @Column
+  //private MultipartFile data;
+  private byte[] data;
+  private int score;
   private String subreddit;
   @CreatedBy
   private String user;

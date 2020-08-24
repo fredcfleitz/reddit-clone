@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -24,6 +26,5 @@ public class User {
   private String password;
   private boolean isActive;
   private String roles;
-
 
 }

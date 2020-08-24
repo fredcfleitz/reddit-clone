@@ -6,16 +6,18 @@ import com.model.PostRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Optional;
+import java.io.*;
 
 @RestController
 @RequestMapping("/api")
-class PostController {
+class PostController{
 
   private PostRepository postRepository;
 
@@ -47,6 +49,32 @@ class PostController {
                 .body(result);
     }
 
+  @PostMapping(path = "/postz", consumes = { "multipart/form-data" })
+  ResponseEntity<Post> createDataPost(@ModelAttribute("data") MultipartFile data,
+  @ModelAttribute("title") String title, @ModelAttribute("user") String user) throws URISyntaxException, IOException {
+        Post post = new Post();
+        post.setData(data.getBytes());
+        post.setTitle(title);
+        post.setUser(user);
+        Post result = postRepository.save(post);
+        return ResponseEntity.created(new URI("/api/posts/" + result.getId()))
+                .body(result);
+    }
 
+  @PutMapping("/posts/{id}/upvote")
+  String upvotePost(@PathVariable Long id) {
+        Post post = postRepository.getOne(id);
+        post.setScore(post.getScore() + 1);
+        postRepository.save(post);
+        return "";
+      }
+
+  @PutMapping("/posts/{id}/downvote")
+  String downvotePost(@PathVariable Long id) {
+        Post post = postRepository.getOne(id);
+        post.setScore(post.getScore() - 1);
+        postRepository.save(post);
+        return "";
+      }
 
 }
