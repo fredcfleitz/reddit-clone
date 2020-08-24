@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 class SubredditController {
 
   private SubredditRepository subredditRepository;

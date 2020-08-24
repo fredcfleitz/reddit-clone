@@ -17,6 +17,7 @@ import java.io.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 class PostController{
 
   private PostRepository postRepository;
